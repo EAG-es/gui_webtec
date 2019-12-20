@@ -1,0 +1,52 @@
+[
+    {
+        "plantilla":"fechas",
+        "nombre":"fecha",
+        "valor":"",
+        "titulo":"Fecha"
+    },
+    {
+        "plantilla":"lineas",
+        "nombre":"texto",
+        "valor":"",
+        "titulo":"Introduzca, un texto:"
+    },
+    {
+        "plantilla":"multilineas",
+        "nombre":"opinion",
+        "valor":"",
+        "titulo":"Su opinión:"
+    },
+    {
+        "plantilla":"enteros",
+        "nombre":"valor",
+        "valor":"10",
+        "titulo":"Escriba un número:"
+    },
+    {
+        "plantilla":"decimales",
+        "nombre":"peso",
+        "valor":"0.0",
+        "titulo":"Escriba el peso, 3 decimales:"
+    },
+    {
+        "plantilla":"radios",
+        "nombre":"si_no",
+        "valor":"1",
+        "titulo":"Sí",
+        "checked":""
+    }, 
+    {
+        "plantilla":"radios",
+        "nombre":"si_no",
+        "valor":"0",
+        "titulo":"No"
+    },
+    {
+        "plantilla":"checkboxes",
+        "nombre":"aceptacion",
+        "valor":"1",
+        "titulo":"Acepto la LOPD",
+        "checked":""
+    }
+]

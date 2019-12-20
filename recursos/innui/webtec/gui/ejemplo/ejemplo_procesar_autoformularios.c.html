@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <style>        
+            {% include innui/webtec/gui/ejemplo/ejemplo_pagina_principal#ejemplo_pagina_principal_css %}
+        </style>
+        <script type="text/javascript">
+            {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones_js %}
+        </script>
+    </head>
+    <body>
+        {% if $innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios_errores %}
+            {$innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios_errores}
+        {% else %} 
+            {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones %}   
+            <h1>Ejemplo procesar autoformularios</h1>
+            {$innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios: }
+        {% endif %}
+    </body>
+</html>
