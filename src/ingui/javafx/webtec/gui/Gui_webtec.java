@@ -27,7 +27,7 @@ public class Gui_webtec extends Webtec {
         contexto = new contextos();
         rutas_mapa = new HashMap () { 
             {
-                put("/", "innui.webtec.gui.ejemplo.ejemplo_pagina_principal");
+                put("/", "innui.webtec.gui.ejemplo.ejemplo_pagina_principal"); //NOI18N
             }
         };
     }
@@ -35,11 +35,11 @@ public class Gui_webtec extends Webtec {
     @Override
     public boolean configurar(Stage stage, String [] error) {
         boolean ret = true;
-        stage.setTitle("Gui (webtec)");
+        stage.setTitle(java.util.ResourceBundle.getBundle("in/javafx/webtec/gui/in").getString("GUI (WEBTEC)"));
         ObservableList<Image> observableList = stage.getIcons();
         InputStream inputStream
                 = Webtec.class.getResourceAsStream(
-                "/recursos/ingui/javafx/webtec/gui/icono_web_carpeta.png");
+                "/recursos/ingui/javafx/webtec/gui/icono_web_carpeta.png"); //NOI18N
         Image image = new Image(inputStream);
         observableList.add(image);
         return ret;
@@ -51,13 +51,13 @@ public class Gui_webtec extends Webtec {
         Map <String, Object> datos_mapa;
         try {
             datos_mapa = new LinkedHashMap();
-            ret = fXML_webtec_jafController.procesar_url(new URL("https://"+Webtec.k_prefijo_url+"/"), datos_mapa, error);
+            ret = fXML_webtec_jafController.procesar_url(new URL("https://"+Webtec.k_prefijo_url+"/"), datos_mapa, error); //NOI18N
         } catch (Exception e) {
             error [0] = e.getMessage();
             if (error[0] == null) {
-                error[0] = "";
+                error[0] = ""; //NOI18N
             }
-            error[0] = "Error en iniciar en Gui_webtec. " + error[0];
+            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/javafx/webtec/gui/in").getString("ERROR EN INICIAR EN GUI_WEBTEC. {0}"), new Object[] {error[0]});
             ret = false;
         }
         return ret;

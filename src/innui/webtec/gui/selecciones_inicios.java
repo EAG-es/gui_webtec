@@ -8,16 +8,12 @@ package innui.webtec.gui;
 import innui.webtec.A_ejecutores;
 import java.util.Map;
 
-/**
- *
- * @author emilio
- */
-public class checkboxes extends A_ejecutores {
+public class selecciones_inicios extends A_ejecutores {
     
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
         return ret;
     }
-    
+
 }

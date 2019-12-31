@@ -3,50 +3,50 @@
         "plantilla":"fechas",
         "nombre":"fecha",
         "valor":"",
-        "titulo":"Fecha"
+        "titulo":"{$in_}Fecha{$_in}"
     },
     {
         "plantilla":"lineas",
         "nombre":"texto",
         "valor":"",
-        "titulo":"Introduzca, un texto:"
+        "titulo":"{$in_}Introduzca, un texto:{$_in}"
     },
     {
         "plantilla":"multilineas",
         "nombre":"opinion",
         "valor":"",
-        "titulo":"Su opinión:"
+        "titulo":"{$in_}Su opinión:{$_in}"
     },
     {
         "plantilla":"enteros",
         "nombre":"valor",
         "valor":"10",
-        "titulo":"Escriba un número:"
+        "titulo":"{$in_}Escriba un número:{$_in}"
     },
     {
         "plantilla":"decimales",
         "nombre":"peso",
         "valor":"0.0",
-        "titulo":"Escriba el peso, 3 decimales:"
+        "titulo":"{$in_}Escriba el peso, 3 decimales:{$_in}"
     },
     {
         "plantilla":"radios",
         "nombre":"si_no",
         "valor":"1",
-        "titulo":"Sí",
+        "titulo":"{$in_}Sí{$_in}",
         "checked":""
     }, 
     {
         "plantilla":"radios",
         "nombre":"si_no",
         "valor":"0",
-        "titulo":"No"
+        "titulo":"{$in_}No{$_in}"
     },
     {
         "plantilla":"checkboxes",
         "nombre":"aceptacion",
         "valor":"1",
-        "titulo":"Acepto la LOPD",
+        "titulo":"{$in_}Acepto la LOPD{$_in}",
         "checked":""
     }
 ]

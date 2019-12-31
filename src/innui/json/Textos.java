@@ -23,7 +23,7 @@ public class Textos {
         Map<String, String> contenidos_mapa = new LinkedHashMap();
         try {
             contenidos_texto = contenidos_texto.trim();
-            if (contenidos_texto.startsWith("[")) {
+            if (contenidos_texto.startsWith("[")) { //NOI18N
                 gson = new GsonBuilder().create();
                 contenidos_mapas_array = gson.fromJson(contenidos_texto, contenidos_mapas_array.getClass());
                 ret = (contenidos_mapas_array != null);
@@ -37,9 +37,9 @@ public class Textos {
         } catch (Exception e) {
             error[0] = e.getMessage();
             if (error[0] == null) {
-                error[0] = "";
+                error[0] = ""; //NOI18N
             }
-            error[0] = "Error en ejecutar. " + error[0];
+            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/json/in").getString("ERROR EN LEER EN TEXTOS. {0}"), new Object[] {error[0]});
             ret = false;
         }
         if (ret) {

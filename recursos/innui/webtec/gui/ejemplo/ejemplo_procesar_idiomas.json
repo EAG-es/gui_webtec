@@ -1,0 +1,23 @@
+[
+    {
+        "plantilla":"autoselecciones_inicios",
+        "nombre":"idioma",
+        "prefijo_href":"https://innui/webtec/gui/ejemplo/ejemplo_procesar_idiomas?idioma=",
+        "titulo":""
+    },
+    {
+        "plantilla":"selecciones_opciones",
+        "nombre":"idioma",
+        "valor":"es",
+        "titulo":"Español"
+    },
+    {
+        "plantilla":"selecciones_opciones",
+        "nombre":"idioma",
+        "valor":"en",
+        "titulo":"English"
+    },
+    {
+        "plantilla":"selecciones_finales"
+    }
+]

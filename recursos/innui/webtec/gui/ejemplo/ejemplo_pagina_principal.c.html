@@ -5,9 +5,6 @@
         <style>        
             {% include innui/webtec/gui/ejemplo/ejemplo_pagina_principal#ejemplo_pagina_principal_css %}
             {#ejemplo_pagina_principal_css}
-            .innui_webtec_gui_menu_aplicaciones_elemento {
-                display: inline-block;
-            }
             .innui_webtec_gui_menu_aplicaciones_div {
                 display: inline-block;
             }
@@ -15,34 +12,36 @@
                 display: inline-block;
                 text-decoration: none;
             }
-            .gui_webtec_titulo {
+            .innui_webtec_gui_titulo {
                 display: inline-block;
                 width: 200px;    
                 vertical-align: top;
             }
-            .gui_webtec_entrada {
+            .innui_webtec_gui_entrada {
                 display: inline-block;
                 width: 400px; 
             }
-            .gui_webtec_div_error {
+            .innui_webtec_gui_div_error {
                 color: red; 
             }  
-            .gui_webtec_div_boton {
+            .innui_webtec_gui_div_boton {
                 width: 600px; 
             }  
-            .gui_webtec_boton {
+            .innui_webtec_gui_boton {
                 display: inline-block;
                 width: 150px; 
             }              
             {#}
         </style>
         <script type="text/javascript">
+            {% include innui/webtec/gui/menu_aplicaciones#in_js %}
+            {% include innui/webtec/gui/menu_aplicaciones#in_parcial_js %}
             {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones_js %}
         </script>
     </head>
     <body>
         {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones %}
-        {$gui_ejemplo_pagina_principal: }
-        <h1>Ejemplo página principal</h1>
+        <h1>{$in_}Ejemplo página principal{$_in}</h1>
+        {$innui_webtec_gui_ejemplo_pagina_principal: }
     </body>
 </html>

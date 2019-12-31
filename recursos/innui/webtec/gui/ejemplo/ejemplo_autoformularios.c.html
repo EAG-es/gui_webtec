@@ -6,12 +6,14 @@
             {% include innui/webtec/gui/ejemplo/ejemplo_pagina_principal#ejemplo_pagina_principal_css %}
         </style>
         <script type="text/javascript">
+            {% include innui/webtec/gui/menu_aplicaciones#in_js %}
+            {% include innui/webtec/gui/menu_aplicaciones#in_parcial_js %}
             {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones_js %}
         </script>
     </head>
     <body>
         {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones %}
-        <h1>Ejemplo autoformularios</h1>
+        <h1>{$in_}Ejemplo autoformularios{$_in}</h1>
         {% include innui/webtec/gui/autoformularios#innui_webtec_gui_autoformularios %}
     </body>
 </html>

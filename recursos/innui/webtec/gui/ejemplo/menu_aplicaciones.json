@@ -20,8 +20,8 @@
         "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
     },
     {
-        "texto": "ir google",
-        "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://www.google.com' class='innui_webtec_gui_menu_aplicaciones_a'>",
+        "texto": "Ver historial",
+        "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://innui/webtec/gui/ver_historiales' class='innui_webtec_gui_menu_aplicaciones_a'>",
         "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
     }
 ]

@@ -12,12 +12,12 @@ import java.util.Map;
  *
  * @author emilio
  */
-public class checkboxes extends A_ejecutores {
+public class ver_historiales_lineas extends A_ejecutores {
+    public static String k_mapa_nombre_href = "innui_webtec_gui_ver_historiales_lineas_href";
     
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
         return ret;
     }
-    
 }
