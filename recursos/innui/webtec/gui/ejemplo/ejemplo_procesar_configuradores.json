@@ -1,0 +1,14 @@
+[
+    {
+        "plantilla":"nombre_archivos",
+        "nombre":"innui_webtec_gui_ejemplo_configuraciones_nombre_archivo",
+        "valor":"",
+        "titulo":"{$in_}Nombre del archivo:{$_in}"
+    },
+    {
+        "plantilla":"lineas",
+        "nombre":"innui_webtec_gui_ejemplo_configuraciones_ruta_carpeta_base",
+        "valor":"",
+        "titulo":"{$in_}Ruta del archivo:{$_in}"
+    }
+]

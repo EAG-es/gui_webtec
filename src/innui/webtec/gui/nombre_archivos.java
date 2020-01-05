@@ -10,18 +10,19 @@ import java.util.Map;
 
 /**
  * Clase de autoformulario, con plantilla asociada
- * Genera un input number (decimal) HTML
+ * Genera un input text HTML
  */
-public class decimales extends A_ejecutores {
+public class nombre_archivos extends A_ejecutores {
     /**
      * Modifica o añade datos que le van a llegar a la plantilla asociada
      * @param objects_mapa datos con nombre que están disponibles
      * @param error mensaje de error, si lo hay.
      * @return true si tiene éxito, false si hay algún error
-     */    
+     */ 
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
         return ret;
     }
+    
 }

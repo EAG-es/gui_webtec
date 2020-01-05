@@ -6,25 +6,33 @@
 package innui.webtec.gui.ejemplo;
 
 import innui.webtec.A_ejecutores;
-import static innui.webtec.Webtec_controlador.reiniciar_mapa;
 import innui.webtec.gui.autoformularios;
-import static innui.webtec.gui.autoformularios.k_parametro_accion;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import static innui.webtec.Webtec_controlador.dejar_mapa_minimo;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformulario;
+import static innui.webtec.gui.menu_aplicaciones.k_mapa_extras;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_accion;
 
 /**
- *
- * @author emilio
+ * Clase de ejemplo que genera el código HTML necesario para ofrecer un cambio de idioma en una aplicación
  */
 public class ejemplo_idiomas extends A_ejecutores {
-    
+    public static String k_accion_de_cambio_de_idioma = "https://innui/webtec/gui/ejemplo/ejemplo_procesar_idiomas";  //NOI18N
+    public static String k_menu_in_idioma = "innui_webtec_gui_ejemplo_ejemplo_idiomas_idioma"; //NOI18N
+    /**
+     * Modifica o añade datos que le van a llegar a la plantilla asociada
+     * @param objects_mapa datos con nombre que están disponibles
+     * @param error mensaje de error, si lo hay.
+     * @return true si tiene éxito, false si hay algún error
+     */ 
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
         autoformularios autoformulario;
-        String innui_webtec_gui_autoformularios = "";
         Map<String, Object> objects_mapa_local = null;
+        String innui_webtec_gui_autoformularios = ""; //NOI18N
         Locale locale;
         String lenguaje;
         try {
@@ -32,16 +40,16 @@ public class ejemplo_idiomas extends A_ejecutores {
             autoformulario.configurar(contexto);
             objects_mapa_local = new LinkedHashMap();
             objects_mapa_local.putAll(objects_mapa);
-            ret = reiniciar_mapa(objects_mapa_local, error);
+            ret = dejar_mapa_minimo(objects_mapa_local, error);
             if (ret) {
                 locale = Locale.getDefault();
                 lenguaje = locale.getLanguage();
-                objects_mapa_local.put("idioma", lenguaje);
-                objects_mapa_local.put(k_parametro_accion, "https://innui/webtec/gui/ejemplo/ejemplo_procesar_idiomas");
+                objects_mapa_local.put(k_menu_in_idioma, lenguaje);
+                objects_mapa_local.put(k_mapa_autoformulario_accion, k_accion_de_cambio_de_idioma);
                 ret = autoformulario.ejecutar(objects_mapa_local, error);
                 if (ret) { 
-                    innui_webtec_gui_autoformularios = (String) objects_mapa_local.get("innui_webtec_gui_autoformularios"); //NOI18N
-                    objects_mapa.put("innui_webtec_gui_menu_aplicaciones_extras", innui_webtec_gui_autoformularios); //NOI18N
+                    innui_webtec_gui_autoformularios = (String) objects_mapa_local.get(k_mapa_autoformulario); //NOI18N
+                    objects_mapa.put(k_mapa_extras, innui_webtec_gui_autoformularios); //NOI18N
                 }
             }
             if (ret == false) {
@@ -52,7 +60,7 @@ public class ejemplo_idiomas extends A_ejecutores {
             if (error[0] == null) {
                 error[0] = ""; //NOI18N
             }
-            error[0] = "Error al ejecutar ejemplo_idiomas. " + error[0];
+            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/webtec/gui/ejemplo/in").getString("ERROR AL EJECUTAR EJEMPLO_IDIOMAS. {0}"), new Object[] {error[0]});
             ret = false;
         }
         return ret;

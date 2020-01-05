@@ -6,16 +6,15 @@
 package innui.json_simple;
 
 /**
- *
- * @author emilio
+ * Clase para tratar textos en JSON Simple:
+ * - No hay comillas dobles en el texto. Ni acotando los atributos, ni en los datos.
+ * - No hay espacios en blanco, ni saltos de linea, decorativos (salvo en la , separadora de objetos).
+ * - Para que: ", \n, \r, \t, [, ], {, }, : y , sean literales, se ponen: {'}, {n}, {r}, {t}, {(}, {)}, {{, }}, ::, y ,,
  */
 public class Textos {
     
     /**
      * Adapta json_simple a json
-     * - No hay comillas dobles en el texto. Ni acotando los atributos, ni en los datos.
-     * - No hay espacios en blanco, ni saltos de linea, decorativos (salvo en la , separadora de objetos).
-     * - Para que: ", \n, \r, \t, [, ], {, }, : y , sean literales, se ponen: {'}, {n}, {r}, {t}, {(}, {)}, {{, }}, ::, y ,,
      * @param json_simple cadena json_simple
      * @param error mensaje de error, si lo hay
      * @return el texto json_simple con comillas dobles añadidas, o null si hay error.
@@ -76,7 +75,7 @@ public class Textos {
     } 
     
     /**
-     * Adapta un texto a json_simple: 
+     * Adapta un texto de atributos, o de datos, al formato de json_simple: 
      * - Convierte: ", \n, \r, \t, [, ], {, }, : y , en literales especiales: {'}, {n}, {r}, {t}, {(}, {)}, {{, }}, :: y ,,
      * @param valor_json cadena con el texto
      * @param error mensaje de error, si lo hay

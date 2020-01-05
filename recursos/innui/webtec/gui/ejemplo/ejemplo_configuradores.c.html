@@ -11,12 +11,9 @@
             {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones_js %}
         </script>
     </head>
-    <body> 
-        {% if $innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios_errores %}
-            {$innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios_errores}
-        {% else %} 
-            <h1>{$in_}Ejemplo procesar autoformularios{$_in}</h1>
-            {$innui_webtec_gui_ejemplo_ejemplo_procesar_autoformularios: }
-        {% endif %}
+    <body>
+        {% include innui/webtec/gui/menu_aplicaciones#innui_webtec_gui_menu_aplicaciones %}
+        <h1>{$in_}Ejemplo configuradores{$_in}</h1>
+        {% include innui/webtec/gui/autoformularios#innui_webtec_gui_autoformularios %}
     </body>
 </html>

@@ -5,7 +5,7 @@
  */
 package innui.webtec.gui;
 
-import static innui.webtec.Ejecutores.k_mapa_nombre_clase;
+import static innui.webtec.Webtec_controlador.k_mapa_nombre_clase;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;

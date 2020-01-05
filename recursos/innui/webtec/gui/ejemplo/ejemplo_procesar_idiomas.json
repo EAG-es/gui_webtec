@@ -1,19 +1,20 @@
 [
     {
         "plantilla":"autoselecciones_inicios",
-        "nombre":"idioma",
-        "prefijo_href":"https://innui/webtec/gui/ejemplo/ejemplo_procesar_idiomas?idioma=",
+        "nombre":"innui_webtec_gui_ejemplo_ejemplo_idiomas_idioma",
+        "prefijo_href":"https://innui/webtec/gui/ejemplo/ejemplo_procesar_idiomas?innui_webtec_gui_ejemplo_ejemplo_idiomas_idioma=",
         "titulo":""
     },
     {
         "plantilla":"selecciones_opciones",
-        "nombre":"idioma",
+        "nombre":"innui_webtec_gui_ejemplo_ejemplo_idiomas_idioma",
         "valor":"es",
-        "titulo":"Español"
+        "titulo":"Español",
+        "selected":""
     },
     {
         "plantilla":"selecciones_opciones",
-        "nombre":"idioma",
+        "nombre":"innui_webtec_gui_ejemplo_ejemplo_idiomas_idioma",
         "valor":"en",
         "titulo":"English"
     },

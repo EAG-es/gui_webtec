@@ -9,12 +9,16 @@ import innui.webtec.A_ejecutores;
 import java.util.Map;
 
 /**
- *
- * @author emilio
+ * Clase de para ver_historiales, con plantilla asociada
+ * Genera el código de cada elemento del historial
  */
 public class ver_historiales_lineas extends A_ejecutores {
-    public static String k_mapa_nombre_href = "innui_webtec_gui_ver_historiales_lineas_href";
-    
+    /**
+     * Modifica o añade datos que le van a llegar a la plantilla asociada
+     * @param objects_mapa datos con nombre que están disponibles
+     * @param error mensaje de error, si lo hay.
+     * @return true si tiene éxito, false si hay algún error
+     */ 
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;

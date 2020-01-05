@@ -9,11 +9,16 @@ import innui.webtec.A_ejecutores;
 import java.util.Map;
 
 /**
- *
- * @author emilio
+ * Clase de autoformulario, con plantilla asociada
+ * Genera un input checkbox HTML
  */
 public class checkboxes extends A_ejecutores {
-    
+    /**
+     * Modifica o añade datos que le van a llegar a la plantilla asociada
+     * @param objects_mapa datos con nombre que están disponibles
+     * @param error mensaje de error, si lo hay.
+     * @return true si tiene éxito, false si hay algún error
+     */    
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;

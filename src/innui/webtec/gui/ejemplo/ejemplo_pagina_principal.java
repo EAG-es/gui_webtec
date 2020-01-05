@@ -11,11 +11,15 @@ import innui.webtec.gui.menu_aplicaciones;
 import java.util.Map;
 
 /**
- *
- * @author emilio
+ * Clase de ejemplo de la página principal de una aplicación, solo con un menú y la traducción a Inglés
  */
 public class ejemplo_pagina_principal extends A_ejecutores {
-    
+    /**
+     * Modifica o añade datos que le van a llegar a la plantilla asociada
+     * @param objects_mapa datos con nombre que están disponibles
+     * @param error mensaje de error, si lo hay.
+     * @return true si tiene éxito, false si hay algún error
+     */ 
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
@@ -31,7 +35,13 @@ public class ejemplo_pagina_principal extends A_ejecutores {
         }
         return ret;
     }
-    
+    /**
+     * Método estático con el código necesario para cargar en el mapa los datos del menú de aplicaciones, y del selector de idioma
+     * @param contexto Contexto de la aplicación
+     * @param objects_mapa Mapa con los datos que utilizar, más los datos resultantes.
+     * @param error mensaje de error, si lo hay.
+     * @return true si tiene éxito, false si hay algún error
+     */
     public static boolean poner_cabecera_en_mapa(contextos contexto, Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
         menu_aplicaciones menu_aplicacion;

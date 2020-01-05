@@ -11,11 +11,16 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- *
- * @author emilio
+ * Clase que analiza un texto JSON qeu pueda ajustarse en un array de mapas de claves de texto y contenido de texto.
  */
 public class Textos {
-    
+    public static String k_formato_fecha = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    /**
+     * Lee un texto con contenido JSON y lo ajusta a: Map&lt;String, String>&gt; []
+     * @param contenidos_texto Texto JSON
+     * @param error Mensaje de error, si lo hay
+     * @return Un array de mapas con los datos del texto JSON, o null si hay error
+     */
     public static Map<String, String> [] leer(String contenidos_texto, String [] error) {
         boolean ret = true;
         Gson gson = null;
@@ -23,8 +28,8 @@ public class Textos {
         Map<String, String> contenidos_mapa = new LinkedHashMap();
         try {
             contenidos_texto = contenidos_texto.trim();
+            gson = new GsonBuilder().setDateFormat(k_formato_fecha).create();
             if (contenidos_texto.startsWith("[")) { //NOI18N
-                gson = new GsonBuilder().create();
                 contenidos_mapas_array = gson.fromJson(contenidos_texto, contenidos_mapas_array.getClass());
                 ret = (contenidos_mapas_array != null);
             } else {
@@ -49,4 +54,27 @@ public class Textos {
         }
     }
     
+    /**
+     * Escribe un texto con contenido JSON a partir de: Map&lt;String, String>&gt;
+     * @param contenidos_mapas_array Un array de mapas con los datos del texto JSON
+     * @param error Mensaje de error, si lo hay
+     * @return Texto JSON, o null si hay error
+     */
+    public static String escribir(Map<String, String> contenidos_mapas_array, String [] error) {
+        String retorno = null;
+        Gson gson = null;
+        try {
+            gson = new GsonBuilder().setDateFormat(k_formato_fecha).setPrettyPrinting().create();
+            retorno = gson.toJson(contenidos_mapas_array);
+        } catch (Exception e) {
+            error[0] = e.getMessage();
+            if (error[0] == null) {
+                error[0] = ""; //NOI18N
+            }
+            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/json/in").getString("ERROR EN ESCRIBIR EN TEXTOS. {0}"), new Object[] {error[0]});
+            retorno = null;
+        }
+        return retorno;
+    }
+
 }
