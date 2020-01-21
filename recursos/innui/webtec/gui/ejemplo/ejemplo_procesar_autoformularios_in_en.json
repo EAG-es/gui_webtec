@@ -28,5 +28,7 @@
     {"clave": "historial", 
         "valor": "history"},
     {"clave": "Ejemplo procesar autoformularios", 
-        "valor": "Example processing autoform"}
+        "valor": "Example processing autoform"},
+    {"clave": "Seleccione un archivo:", 
+        "valor": "Select a file"}
 ]

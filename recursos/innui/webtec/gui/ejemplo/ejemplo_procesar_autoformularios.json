@@ -6,6 +6,12 @@
         "titulo":"{$in_}Fecha{$_in}"
     },
     {
+        "plantilla":"elegir_archivos",
+        "nombre":"archivo_seleccionado",
+        "valor":"",
+        "titulo":"{$in_}Seleccione un archivo:{$_in}"
+    },
+    {
         "plantilla":"lineas",
         "nombre":"texto",
         "valor":"",

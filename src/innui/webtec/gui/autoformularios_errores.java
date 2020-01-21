@@ -16,7 +16,7 @@ import java.util.Map;
 import java.net.URLEncoder;
 import java.net.URL;
 import java.util.LinkedHashMap;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_accion;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_accion;
 
 /**
  * Clase con la que regenerar un autoformulario; como un texto, dejándolo en el mapa de datos.
@@ -58,7 +58,7 @@ public class autoformularios_errores extends A_ejecutores {
             }                                     
             if (ret) {
                 nombre_accion_plantilla = URLEncoder.encode(url_recibida, "UTF-8"); //NOI18N
-                parametros = k_mapa_autoformulario_accion + "=" + nombre_accion_plantilla; //NOI18N
+                parametros = k_mapa_autoformularios_accion + "=" + nombre_accion_plantilla; //NOI18N
                 url_recibida = path_formulario + "?" + parametros; //NOI18N
             }
             if (ret) {

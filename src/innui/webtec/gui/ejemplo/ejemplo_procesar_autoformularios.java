@@ -6,10 +6,11 @@
 package innui.webtec.gui.ejemplo;
 
 import innui.webtec.A_ejecutores;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_error;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_enviar;
 import innui.webtec.gui.autoformularios_errores;
 import static innui.webtec.gui.autoformularios_errores.k_mapa_autoformulario_errores;
 import java.util.Map;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_error;
 
 /**
  * Clase de ejemplo de procesamiento de un formulario, en el que se encuentra un error, y se retorna el mismo formulario más el mensaje de error
@@ -28,10 +29,14 @@ public class ejemplo_procesar_autoformularios extends A_ejecutores {
         boolean ret = true;
         autoformularios_errores autoformulario_error;
         String innui_webtec_gui_autoformularios_errores;
+        String boton_enviar_pulsado;
         try {
-            objects_mapa.put(k_mapa_autoformulario_error,  //NOI18N
-                    java.util.ResourceBundle.getBundle("in/innui/webtec/gui/ejemplo/in").getString("EJEMPLO DEL PASO DE UN MENSAJE DE ERROR. ")
-            ); 
+            boton_enviar_pulsado = (String) objects_mapa.get(k_mapa_autoformularios_enviar);
+            if (boton_enviar_pulsado !=  null) {
+                objects_mapa.put(k_mapa_autoformularios_error,  //NOI18N
+                        java.util.ResourceBundle.getBundle("in/innui/webtec/gui/ejemplo/in").getString("EJEMPLO DEL PASO DE UN MENSAJE DE ERROR. ")
+                ); 
+            }
             autoformulario_error = new autoformularios_errores();
             autoformulario_error.configurar(contexto);
             ret = autoformulario_error.ejecutar(objects_mapa, error);

@@ -9,16 +9,16 @@ import innui.webtec.A_ejecutores;
 import java.util.Map;
 
 /**
- * Clase de autoformulario, con plantilla asociada
- * Genera un input number (decimal) HTML
+ *
+ * @author emilio
  */
-public class decimales extends A_ejecutores {
+public class elegir_archivos_lineas extends A_ejecutores {
     /**
-     * Modifica o añade datos que le van a llegar a la plantilla asociada
+     * Código para la construcción de un formulario automáticamenta a partir de un archivo JSON
      * @param objects_mapa datos con nombre que están disponibles
      * @param error mensaje de error, si lo hay.
      * @return true si tiene éxito, false si hay algún error
-     */    
+     */
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;

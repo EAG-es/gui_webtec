@@ -26,9 +26,11 @@
     </head>
     <body>
         {% include #innui_webtec_gui_autoformularios %}
-        {#innui_webtec_gui_autoformularios}        
-        <div class="innui_webtec_gui_div_error">{$innui_webtec_gui_autoformularios_error}</div>
-        <form method="get" action="{$innui_webtec_gui_autoformularios_accion}">
+        {#innui_webtec_gui_autoformularios}
+        {% if $innui_webtec_gui_autoformularios_error %}        
+        <div class="innui_webtec_gui_div_error">{$innui_webtec_gui_autoformularios_error: }</div>
+        {% endif %}
+        <form class="innui_webtec_gui_form" method="get" action="{$innui_webtec_gui_autoformularios_accion}">
             {$innui_webtec_gui_autoformularios}
             <div class="innui_webtec_gui_div_boton">
                 <button type="button" class="innui_webtec_gui_boton" name="innui_webtec_gui_autoformularios_cancelacion"

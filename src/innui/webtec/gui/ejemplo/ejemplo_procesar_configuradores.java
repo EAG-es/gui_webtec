@@ -6,13 +6,13 @@
 package innui.webtec.gui.ejemplo;
 
 import innui.webtec.A_ejecutores;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_error;
 import innui.webtec.gui.autoformularios_errores;
 import static innui.webtec.gui.autoformularios_errores.k_mapa_autoformulario_errores;
 import static innui.webtec.gui.configuraciones.escribir;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_error;
 
 /**
  * Clase de ejemplo de procesamiento de un formulario, en el que se encuentra un error, y se retorna el mismo formulario más el mensaje de error
@@ -45,9 +45,9 @@ public class ejemplo_procesar_configuradores extends A_ejecutores {
             }
             ret = escribir(strings_mapa, objects_mapa, error);
             if (ret == false) {        
-                objects_mapa.put(k_mapa_autoformulario_error, error[0]);
+                objects_mapa.put(k_mapa_autoformularios_error, error[0]);
             } else {
-                objects_mapa.put(k_mapa_autoformulario_error, "Configuración guardada correctamente. ");
+                objects_mapa.put(k_mapa_autoformularios_error, "Configuración guardada correctamente. ");
             }
             autoformulario_error = new autoformularios_errores();
             autoformulario_error.configurar(contexto);
