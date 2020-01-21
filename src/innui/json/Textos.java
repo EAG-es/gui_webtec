@@ -56,16 +56,16 @@ public class Textos {
     
     /**
      * Escribe un texto con contenido JSON a partir de: Map&lt;String, String>&gt;
-     * @param contenidos_mapas_array Un array de mapas con los datos del texto JSON
+     * @param contenidos_mapa Un array de mapas con los datos del texto JSON
      * @param error Mensaje de error, si lo hay
      * @return Texto JSON, o null si hay error
      */
-    public static String escribir(Map<String, String> contenidos_mapas_array, String [] error) {
+    public static String escribir(Map<String, String> contenidos_mapa, String [] error) {
         String retorno = null;
         Gson gson = null;
         try {
             gson = new GsonBuilder().setDateFormat(k_formato_fecha).setPrettyPrinting().create();
-            retorno = gson.toJson(contenidos_mapas_array);
+            retorno = gson.toJson(contenidos_mapa);
         } catch (Exception e) {
             error[0] = e.getMessage();
             if (error[0] == null) {

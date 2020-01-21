@@ -14,8 +14,8 @@ import innui.webtec.A_ejecutores;
 import java.util.Map;
 import java.util.Map.Entry;
 import innui.json.Textos;
+import static innui.webtec.Ejecutores.k_mapa_ruta_base;
 import innui.webtec.Rutas;
-import static innui.webtec.Webtec_controlador.k_mapa_ruta_base;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import static innui.webtec.Webtec_controlador.leer_penultimo_historial;
@@ -23,7 +23,7 @@ import static innui.webtec.chunk.Procesamientos.k_datos_extension;
 
 /**
  * Clase derivada de A_ejecutores qeu construye un formualario a partir de un archivo JSON y los datos contenidos en un mapa.
- * - El archivo JSON debe tener el mismo nombre que el archivo indicado en la url del parámetro: k_mapa_autoformulario_accion, indicado en el mapa.
+ * - El archivo JSON debe tener el mismo nombre que el archivo indicado en la url del parámetro: k_mapa_autoformularios_accion, indicado en el mapa.
  - El formato del archivo JSON es un array de objetos que contienen los atributos a usar por las plantillas qeu procesan cada elemento de formulario.
  Los campos obligatorios son: 
  -- "plantilla", cuya clase será procesada, y la plantilla del mismo nombre, también.
@@ -92,43 +92,63 @@ public class autoformularios extends A_ejecutores {
     /**
      * Sufijo que se utiliza para pasar datos en el mapa, en referencia con la url de la acción enlazada con el formulario
      */
-    public static String k_sufijo_accion = "accion"; //NOI18N
+//    public static String k_sufijo_accion = "accion"; //NOI18N
     /**
      * Sufijo que se utiliza para pasar datos en el mapa, en referencia con la url de la cancelación enlazada con el formulario
      */
-    public static String k_sufijo_cancelacion = "cancelacion"; //NOI18N
+//    public static String k_sufijo_cancelacion = "cancelacion"; //NOI18N
     /**
      * Sufijo que se utiliza para pasar datos en el mapa, con un mensaje de error
      */
-    public static String k_sufijo_error = "error"; //NOI18N
+//    public static String k_sufijo_error = "error"; //NOI18N
     /**
      * Nombre del parámetro del mapa que indica el archivo que procesará el formulario, y cuyo nombre coincide con el del archivo JSON qeu utilizar para construir el formulario.
      */
-    public static String k_mapa_autoformulario_accion = "innui_webtec_gui_autoformularios_accion"; //NOI18N
+    public static String k_mapa_autoformularios_accion = "innui_webtec_gui_autoformularios_accion"; //NOI18N
     /**
      * Nombre de la clave que por defecto que utilizar para poner el texto de un mensaje de error en el formulario
      */
-    public static String k_mapa_autoformulario_error = "innui_webtec_gui_autoformularios_error"; //NOI18N   
+    public static String k_mapa_autoformularios_error = "innui_webtec_gui_autoformularios_error"; //NOI18N   
     /**
      * Nombre de la clave para poner la url de cancelación en el formulario
      */
-    public static String k_mapa_autoformulario_cancelacion = "innui_webtec_gui_autoformularios_cancelacion"; //NOI18N   
+    public static String k_mapa_autoformularios_cancelacion = "innui_webtec_gui_autoformularios_cancelacion"; //NOI18N   
+    /**
+     * Nombre de la clave del nombre del botón enviar
+     */
+    public static String k_mapa_autoformularios_enviar = "innui_webtec_gui_autoformularios_enviar"; //NOI18N   
+    /**
+     * Nombre de la clave para poner el titulo de un elemento del formulario
+     */
+    public static String k_mapa_autoformularios_titulo = "innui_webtec_gui_autoformularios_titulo";
+    /**
+     * Nombre de la clave para poner el nombre de un elemento del formulario
+     */
+    public static String k_mapa_autoformularios_nombre = "innui_webtec_gui_autoformularios_nombre";
     /**
      * Nombre de la clave para poner el valor de un elemento del formulario
      */
-    public static String k_mapa_autoformulario_valor = "innui_webtec_gui_autoformularios_valor";
+    public static String k_mapa_autoformularios_valor = "innui_webtec_gui_autoformularios_valor";
     /**
      * Nombre de la clave para poner el valor anterior de un elemento del formulario
      */
-    public static String k_mapa_autoformulario_valor_anterior = "innui_webtec_gui_autoformularios_valor_anterior";
+    public static String k_mapa_autoformularios_valor_anterior = "innui_webtec_gui_autoformularios_valor_anterior";
     /**
      * Nombre de la clave para poner el valor: selected, en un elemento del formulario
      */
-    public static String k_mapa_autoformulario_selected = "innui_webtec_gui_autoformularios_selected";
+    public static String k_mapa_autoformularios_selected = "innui_webtec_gui_autoformularios_selected";
+    /**
+     * Nombre de la clave para poner el valor el nombre de un archivo en un elemento del formulario
+     */
+    public static String k_mapa_autoformularios_nombre_archivo = "innui_webtec_gui_autoformularios_nombre_archivo";
+    /**
+     * Nombre de la clave para poner el valor el nombre alternativo de una imagen en un elemento del formulario
+     */
+    public static String k_mapa_autoformularios_nombre_imagen = "innui_webtec_gui_autoformularios_nombre_imagen";
     /**
      * Nombre de la clave para poner el texto del formulario construido
      */
-    public static String k_mapa_autoformulario = "innui_webtec_gui_autoformularios"; //NOI18N   
+    public static String k_mapa_autoformularios = "innui_webtec_gui_autoformularios"; //NOI18N   
     /**
      * Código para la construcción de un formulario automáticamenta a partir de un archivo JSON
      * @param objects_mapa datos con nombre que están disponibles
@@ -141,7 +161,6 @@ public class autoformularios extends A_ejecutores {
         String clave;
         String valor;
         String_webtec_controlador string_webtec_controlador;
-        String nombre_clase = ""; //NOI18N
         String nombre_plantilla = ""; //NOI18N
         String nombre_accion_plantilla = ""; //NOI18N
         String protocolo_accion_plantilla = ""; //NOI18N
@@ -162,13 +181,11 @@ public class autoformularios extends A_ejecutores {
                 cancelacion_url_texto = "";
             }
             if (ret) {
-                nombre_clase = this.getClass().getName();
-                nombre_clase = nombre_clase.replace(".", "_"); //NOI18N
-                accion = (String) objects_mapa.get(k_mapa_autoformulario_accion);
+                accion = (String) objects_mapa.get(k_mapa_autoformularios_accion);
                 ret = (accion != null);
             }
             if (ret == false) {
-                error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("FALTA EL PARAMETRO: {0}. "), new Object[] {k_mapa_autoformulario_accion});
+                error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("FALTA EL PARAMETRO: {0}. "), new Object[] {k_mapa_autoformularios_accion});
             }
             if (ret) {
                 protocolo_accion_plantilla = Urls.extraer_protocolo(accion, error);
@@ -192,7 +209,7 @@ public class autoformularios extends A_ejecutores {
                 ret = (json_mapa_array != null);
             } 
             if (ret) {
-                ruta_autoformulario = obtener_carpeta_clases(nombre_accion_plantilla, objects_mapa, error);           
+                ruta_autoformulario = obtener_carpeta_clases(error);           
                 ret = (ruta_autoformulario != null);
             } 
             if (ret) {
@@ -213,7 +230,7 @@ public class autoformularios extends A_ejecutores {
                         } else if (clave.equals(k_campo_selected)) { 
                             valor = k_campo_selected; 
                         }
-                        objects_mapa_local.put(nombre_clase + "_" + clave, valor); //NOI18N
+                        objects_mapa_local.put(k_mapa_autoformularios + "_" + clave, valor); //NOI18N
                     }
                     if (ret == false) {
                         break;
@@ -237,11 +254,11 @@ public class autoformularios extends A_ejecutores {
                 objects_mapa_local = new LinkedHashMap();
                 objects_mapa_local.putAll(objects_mapa);
                 url_plantilla = completar_URL(nombre_plantilla, protocolo_accion_plantilla, error);
-                objects_mapa_local.put(nombre_clase + "_" + k_campo_nombre, k_mapa_autoformulario_cancelacion); //NOI18N
-                if (objects_mapa.containsKey(k_mapa_autoformulario_cancelacion)) { //NOI18N
-                    cancelacion_url_texto = (String) objects_mapa.get(k_mapa_autoformulario_cancelacion); //NOI18N
+                objects_mapa_local.put(k_mapa_autoformularios_nombre, k_mapa_autoformularios_cancelacion); //NOI18N
+                if (objects_mapa.containsKey(k_mapa_autoformularios_cancelacion)) { //NOI18N
+                    cancelacion_url_texto = (String) objects_mapa.get(k_mapa_autoformularios_cancelacion); //NOI18N
                 }
-                objects_mapa_local.put(nombre_clase + "_" + k_campo_valor, cancelacion_url_texto); //NOI18N
+                objects_mapa_local.put(k_mapa_autoformularios_valor, cancelacion_url_texto); //NOI18N
                 ret = string_webtec_controlador.procesar_url_sin_historial(contexto, url_plantilla, objects_mapa_local, error);
                 if (ret == false) {
                     string_webtec_controlador.poner_error(error[0]);
@@ -251,25 +268,25 @@ public class autoformularios extends A_ejecutores {
                 }
             }
             if (ret) {
-                objects_mapa.put(nombre_clase + "_" + k_sufijo_accion, accion); //NOI18N
-                objects_mapa.put(nombre_clase + "_" + k_sufijo_cancelacion, cancelacion_url_texto); //NOI18N
-                objects_mapa.put(nombre_clase, formulario); //NOI18N
+                objects_mapa.put(k_mapa_autoformularios_accion, accion); //NOI18N
+                objects_mapa.put(k_mapa_autoformularios_cancelacion, cancelacion_url_texto); //NOI18N
+                objects_mapa.put(k_mapa_autoformularios, formulario); //NOI18N
                 if (mensaje_error.isEmpty()) {
-                    mensaje_error = (String) objects_mapa.get(k_mapa_autoformulario_error); //NOI18N
+                    mensaje_error = (String) objects_mapa.get(k_mapa_autoformularios_error); //NOI18N
                 }
                 if (mensaje_error == null) {
                     mensaje_error = ""; //NOI18N
                 }
-                objects_mapa.put(nombre_clase + "_" + k_sufijo_error, mensaje_error); //NOI18N
+                objects_mapa.put(k_mapa_autoformularios_error, mensaje_error); //NOI18N
             } else {
-                objects_mapa.put(nombre_clase, error[0]);
+                objects_mapa.put(k_mapa_autoformularios, error[0]);
             }
         } catch (Exception e) {
             error [0] = e.getMessage();
             if (error[0] == null) {
                 error[0] = ""; //NOI18N
             }
-            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("ERROR EN FORMULARIO.EJECUTAR. {0}"), new Object[] {error[0]});
+            error[0] = java.text.MessageFormat.format(java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("ERROR EN AUTOFORMULARIOS.EJECUTAR. {0}"), new Object[] {error[0]});
             ret = false;
         }
         return ret;
@@ -292,12 +309,10 @@ public class autoformularios extends A_ejecutores {
     }
     /**
      * Obtiene la ruta con el nombre de la carpeta de clases de los componentes del autoformulario.
-     * @param nombre_accion_sin_extension Ruta de url descrita en la acción del formulario
-     * @param objects_mapa Datos adicionales
      * @param error mMnsaje de error, si lo hay.
      * @return La ruta con el nombre delas carpetas de clases de los componentes del autoformulario, null si hay algún error
      */    
-    public String obtener_carpeta_clases(String nombre_accion_sin_extension, Map<String, Object> objects_mapa, String [] error) {
+    public String obtener_carpeta_clases(String [] error) {
         String retorno = null;
         retorno = this.getClass().getPackage().getName();
         retorno = Rutas.convertir_nombre_clase_a_ruta(retorno, error);
@@ -329,13 +344,18 @@ public class autoformularios extends A_ejecutores {
                 ret = (retorno_mapas_array != null);
             }            
             if (ret) {
-                valor = (String) objects_mapa.get(k_mapa_autoformulario_cancelacion);
+                valor = (String) objects_mapa.get(k_mapa_autoformularios_cancelacion);
                 if (valor != null) {
                     hay_parametros = true;
                 }
                 if (hay_parametros == false) {
                     for (Map<String, String> mapa: retorno_mapas_array) {
                         nombre = mapa.get(k_campo_nombre); //NOI18N
+                        if (nombre == null) {
+                            ret = false;
+                            error[0] = java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("NO SE ENCUENTRA EL ATRIBUTO: NOMBRE. ");
+                            break;
+                        }
                         valor = (String) objects_mapa.get(nombre);
                         if (valor != null) {
                             hay_parametros = true;
@@ -343,27 +363,29 @@ public class autoformularios extends A_ejecutores {
                         }
                     }
                 }
-                for (Map<String, String> mapa: retorno_mapas_array) {
-                    nombre = mapa.get(k_campo_nombre); //NOI18N
-                    if (nombre == null) {
-                        ret = false;
-                        error[0] = java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("NO SE ENCUENTRA EL ATRIBUTO: NOMBRE. ");
-                        break;
-                    }
-                    valor_anterior = mapa.get(k_campo_valor);
-                    valor = (String) objects_mapa.get(nombre);
-                    if (valor != null) {
-                        mapa.put(k_campo_valor_anterior, valor_anterior); //NOI18N
-                        mapa.put(k_campo_valor, valor); //NOI18N
-                    } else {
-                        plantilla = mapa.get(k_campo_plantilla); 
-                        if (plantilla.equals(k_dato_plantilla_radios)) {
-                            mapa.put(k_campo_valor_anterior, null); //NOI18N
-                            mapa.put(k_campo_valor, valor_anterior); //NOI18N
-                        } else if (plantilla.equals(k_dato_plantilla_checkboxes)) { //NOI18N
-                            if (hay_parametros) {
-                                if (mapa.containsKey(k_campo_checked)) { //NOI18N
-                                    mapa.remove(k_campo_checked); //NOI18N
+                if (ret) {
+                    for (Map<String, String> mapa: retorno_mapas_array) {
+                        nombre = mapa.get(k_campo_nombre); //NOI18N
+                        if (nombre == null) {
+                            ret = false;
+                            error[0] = java.util.ResourceBundle.getBundle("in/innui/webtec/gui/in").getString("NO SE ENCUENTRA EL ATRIBUTO: NOMBRE. ");
+                            break;
+                        }
+                        valor_anterior = mapa.get(k_campo_valor);
+                        valor = (String) objects_mapa.get(nombre);
+                        if (valor != null) {
+                            mapa.put(k_campo_valor_anterior, valor_anterior); //NOI18N
+                            mapa.put(k_campo_valor, valor); //NOI18N
+                        } else {
+                            plantilla = mapa.get(k_campo_plantilla); 
+                            if (plantilla.equals(k_dato_plantilla_radios)) {
+                                mapa.put(k_campo_valor_anterior, null); //NOI18N
+                                mapa.put(k_campo_valor, valor_anterior); //NOI18N
+                            } else if (plantilla.equals(k_dato_plantilla_checkboxes)) { //NOI18N
+                                if (hay_parametros) {
+                                    if (mapa.containsKey(k_campo_checked)) { //NOI18N
+                                        mapa.remove(k_campo_checked); //NOI18N
+                                    }
                                 }
                             }
                         }

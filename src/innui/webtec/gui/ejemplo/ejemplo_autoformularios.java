@@ -7,9 +7,9 @@ package innui.webtec.gui.ejemplo;
 
 import innui.webtec.A_ejecutores;
 import innui.webtec.gui.autoformularios;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_error;
 import static innui.webtec.gui.ejemplo.ejemplo_pagina_principal.poner_cabecera_en_mapa;
 import java.util.Map;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_error;
 
 /**
  * Calse de ejemplo, con plantilla asociada, de aplicación que hace uso de los autoformularios.
@@ -28,8 +28,8 @@ public class ejemplo_autoformularios extends A_ejecutores {
         try {
             ret = poner_cabecera_en_mapa(contexto, objects_mapa, error);
             if (ret) {
-                if (objects_mapa.containsKey(k_mapa_autoformulario_error) == false) { //NOI18N
-                    objects_mapa.put(k_mapa_autoformulario_error, ""); //NOI18N
+                if (objects_mapa.containsKey(k_mapa_autoformularios_error) == false) { //NOI18N
+                    objects_mapa.put(k_mapa_autoformularios_error, ""); //NOI18N
                 }
                 autoformulario = new autoformularios();
                 autoformulario.configurar(contexto);

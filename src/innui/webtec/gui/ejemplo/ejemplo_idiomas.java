@@ -11,9 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import static innui.webtec.Webtec_controlador.dejar_mapa_minimo;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario;
 import static innui.webtec.gui.menu_aplicaciones.k_mapa_extras;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_accion;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_accion;
 
 /**
  * Clase de ejemplo que genera el código HTML necesario para ofrecer un cambio de idioma en una aplicación
@@ -45,15 +45,17 @@ public class ejemplo_idiomas extends A_ejecutores {
                 locale = Locale.getDefault();
                 lenguaje = locale.getLanguage();
                 objects_mapa_local.put(k_menu_in_idioma, lenguaje);
-                objects_mapa_local.put(k_mapa_autoformulario_accion, k_accion_de_cambio_de_idioma);
+                objects_mapa_local.put(k_mapa_autoformularios_accion, k_accion_de_cambio_de_idioma);
                 ret = autoformulario.ejecutar(objects_mapa_local, error);
                 if (ret) { 
-                    innui_webtec_gui_autoformularios = (String) objects_mapa_local.get(k_mapa_autoformulario); //NOI18N
-                    objects_mapa.put(k_mapa_extras, innui_webtec_gui_autoformularios); //NOI18N
+                    innui_webtec_gui_autoformularios = (String) objects_mapa_local.get(k_mapa_autoformularios); //NOI18N
+                    objects_mapa.put(k_mapa_extras, innui_webtec_gui_autoformularios); 
+                } else {
+                    objects_mapa.put(k_mapa_extras, error[0]);
                 }
             }
             if (ret == false) {
-                objects_mapa.put("innui_webtec_gui_menu_aplicaciones_extras", error[0]); //NOI18N
+                objects_mapa.put(k_mapa_extras, error[0]); //NOI18N
             }
         } catch (Exception e) {
             error [0] = e.getMessage();

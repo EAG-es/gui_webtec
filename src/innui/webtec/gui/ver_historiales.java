@@ -11,10 +11,10 @@ import static innui.html.Urls.completar_URL;
 import innui.webtec.A_ejecutores;
 import innui.webtec.Rutas;
 import innui.webtec.String_webtec_controlador;
-import static innui.webtec.Webtec_controlador.k_urls_fila_nombre;
 import java.net.URL;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import static innui.webtec.Webtec_controlador.k_contexto_urls_fila_nombre;
 
 /**
  * Clase para presentar el historial de urls públicas de la aplicación
@@ -55,7 +55,7 @@ public class ver_historiales extends A_ejecutores {
         Map<String, Object> objects_mapa_local = null;
         try {
             string_webtec_controlador = new String_webtec_controlador();            
-            urls_fila = (filas) contexto.leer(k_urls_fila_nombre).dar();
+            urls_fila = (filas) contexto.leer(k_contexto_urls_fila_nombre).dar();
             ret = (urls_fila != null);
             if (ret) {
                 ruta_ver_historiales = this.getClass().getName();

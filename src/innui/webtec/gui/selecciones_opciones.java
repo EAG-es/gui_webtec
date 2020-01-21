@@ -6,10 +6,10 @@
 package innui.webtec.gui;
 
 import innui.webtec.A_ejecutores;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_selected;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_valor;
-import static innui.webtec.gui.autoformularios.k_mapa_autoformulario_valor_anterior;
 import java.util.Map;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_valor;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_valor_anterior;
+import static innui.webtec.gui.autoformularios.k_mapa_autoformularios_selected;
 
 /**
  * Clase de autoformulario, con plantilla asociada
@@ -26,18 +26,18 @@ public class selecciones_opciones extends A_ejecutores {
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
-        String valor = (String) objects_mapa.get(k_mapa_autoformulario_valor);
-        String valor_anterior = (String) objects_mapa.get(k_mapa_autoformulario_valor_anterior);
-        String selected = (String) objects_mapa.get(k_mapa_autoformulario_selected);
+        String valor = (String) objects_mapa.get(k_mapa_autoformularios_valor);
+        String valor_anterior = (String) objects_mapa.get(k_mapa_autoformularios_valor_anterior);
+        String selected = (String) objects_mapa.get(k_mapa_autoformularios_selected);
         if (selected == null) {
-            objects_mapa.put(k_mapa_autoformulario_selected, "");
+            objects_mapa.put(k_mapa_autoformularios_selected, "");
         }        
         if (valor != null && valor_anterior != null) {
             if (valor.equals(valor_anterior)) {
-                objects_mapa.put(k_mapa_autoformulario_selected, "selected");
+                objects_mapa.put(k_mapa_autoformularios_selected, "selected");
             } else {
-                objects_mapa.put(k_mapa_autoformulario_selected, "");
-                objects_mapa.put(k_mapa_autoformulario_valor, valor_anterior);
+                objects_mapa.put(k_mapa_autoformularios_selected, "");
+                objects_mapa.put(k_mapa_autoformularios_valor, valor_anterior);
             }
         }
         return ret;

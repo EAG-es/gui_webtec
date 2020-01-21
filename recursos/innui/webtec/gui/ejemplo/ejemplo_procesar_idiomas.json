@@ -19,6 +19,7 @@
         "titulo":"English"
     },
     {
-        "plantilla":"selecciones_finales"
+        "plantilla":"selecciones_finales",
+        "nombre":""
     }
 ]

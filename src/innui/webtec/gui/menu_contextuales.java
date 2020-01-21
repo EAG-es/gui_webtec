@@ -8,9 +8,12 @@ package innui.webtec.gui;
 import static innui.archivos.Rutas.aumentar_ruta;
 import innui.archivos.Utf8;
 import innui.contextos.i_eles;
+import static innui.html.Urls.extraer_path;
+import static innui.html.Urls.extraer_protocolo;
 import innui.json.Textos;
 import innui.webtec.A_ejecutores;
 import static innui.webtec.Ejecutores.k_mapa_nombre_plantilla;
+import static innui.webtec.Webtec_controlador.leer_ultimo_historial;
 import static innui.webtec.chunk.Procesamientos.k_datos_extension;
 import java.io.File;
 import java.net.URL;
@@ -32,23 +35,11 @@ import static innui.webtec.chunk.Procesamientos.k_ruta_plantillas;
  * - acción de menú: La primera palabra de cada opción del menú
  * - objetos del menú: Las segundas y siguientes palabras de cada opción de menú
  */
-public class menu_aplicaciones extends A_ejecutores {
+public class menu_contextuales extends A_ejecutores {
     /**
      * Clave del mapa y el contexto para guardar el array de contenidos del menú
      */
-    public static String k_mapa_contenido_array = "innui_webtec_gui_menu_aplicaciones_contenido_array"; //NOI18N
-    /**
-     * Clave del mapa y el contexto para guardar el array de acciones del menú
-     */
-    public static String k_mapa_accion_array = "innui_webtec_gui_menu_aplicaciones_accion_array"; //NOI18N
-    /**
-     * Clave del mapa y el contexto para guardar el array de objetos del menú
-     */
-    public static String k_mapa_objeto_array = "innui_webtec_gui_menu_aplicaciones_objeto_array"; //NOI18N
-    /**
-     * Clave del mapa donde almacenar código HTML adicional para el menú
-     */
-    public static String k_mapa_extras = "innui_webtec_gui_menu_aplicaciones_extras"; 
+    public static String k_mapa_contenido_array = "innui_webtec_gui_menu_contextuales_contenido_array"; //NOI18N
     /**
      * Clave del campo texto, de cada opción del menú del archivo JSON
      */
@@ -70,29 +61,9 @@ public class menu_aplicaciones extends A_ejecutores {
      */
     public static String k_nombre_campo_sufijo = "\"sufijo\": "; //NOI18N 
     /**
-     * Dato del campo prefijo cada entrada del array JSON generado con los array de acciones
+     * Clave del campo sufijo cada entrada del array JSON generado con los array de acciones y objetos
      */
-    public static String k_prefijo_accion = "\"<a href='' class='innui_webtec_gui_menu_aplicaciones_a' onclick=\\\"innui_webtec_gui_menu_aplicaciones_encontrar_contenido('\","; //NOI18N
-    /**
-     * Dato del campo infijo cada entrada del array JSON generado con los array de acciones
-     */
-    public static String k_infijo_accion = "\"'); return false;\\\" >\","; //NOI18N
-    /**
-     * Dato del campo sufijo cada entrada del array JSON generado con los array de acciones
-     */
-    public static String k_sufijo_accion = "\"</a>&nbsp;&nbsp;&nbsp;&nbsp;\""; //NOI18N
-    /**
-     * Dato del campo prefijo cada entrada del array JSON generado con los array de objetos
-     */
-    public static String k_prefijo_objeto = "\"<a href='' class='innui_webtec_gui_menu_aplicaciones_a' onclick=\\\"innui_webtec_gui_menu_aplicaciones_encontrar_contenido('\","; //NOI18N
-    /**
-     * Dato del campo infijo cada entrada del array JSON generado con los array de objetos
-     */
-    public static String k_infijo_objeto = "\"'); return false;\\\" >\","; //NOI18N
-    /**
-     * Dato del campo sufijo cada entrada del array JSON generado con los array de objetos
-     */
-    public static String k_sufijo_objeto = "\"</a>&nbsp;&nbsp;&nbsp;&nbsp;\""; //NOI18N    
+    public static String k_sufijo_menu_contextual = "_menu_contextuales"; //NOI18N 
 
     /**
      * Genera los valores de contenidoes, acciónes y objetos que son manejados por el código javascript de la plantilla asociada.
@@ -104,84 +75,39 @@ public class menu_aplicaciones extends A_ejecutores {
     @Override
     public boolean ejecutar(Map<String, Object> objects_mapa, String[] error) {
         boolean ret = true;
-        String ruta;
+        String ruta = "";
         String contenidos_texto = ""; //NOI18N
-        String acciones_texto = ""; //NOI18N
-        String objetos_texto = ""; //NOI18N
         Map<String, String> [] contenidos_mapas_array = null;
         i_eles ele_contenido_array;
-        i_eles ele_accion_array;
-        i_eles ele_objeto_array;
+        String url_recibida = ""; //NOI18N
+        String path_menu_contextual = ""; //NOI18N
+        File file;
         try {
             ele_contenido_array = contexto.leer(k_mapa_contenido_array); //NOI18N
-            ele_accion_array = contexto.leer(k_mapa_accion_array); //NOI18N
-            ele_objeto_array = contexto.leer(k_mapa_objeto_array); //NOI18N
             if (ele_contenido_array.es_nulo()) {
-                ruta = obtener_ruta_json(getClass().getSimpleName(), objects_mapa, error);
-                ret = (ruta != null);
+                url_recibida = leer_ultimo_historial(contexto, error);
+                ret = (url_recibida != null);                                     
+                if (ret) {
+                    path_menu_contextual = extraer_path(url_recibida, "", error); //NOI18N
+                }
+                if (ret) {
+                    path_menu_contextual = path_menu_contextual + k_sufijo_menu_contextual;
+                    file = new File(path_menu_contextual);
+                    path_menu_contextual = file.getName();
+                    ruta = obtener_ruta_json(path_menu_contextual, objects_mapa, error);
+                    ret = (ruta != null);
+                }
                 if (ret) {
                     contenidos_texto = Utf8.leer(ruta, error);
                     contenidos_mapas_array = Textos.leer(contenidos_texto, error);
                     ret = (contenidos_mapas_array != null);
                 }
                 if (ret) {
-                    int i = 0;
-                    String contenido_texto = ""; //NOI18N
-                    Set<String> acciones_set = new TreeSet();
-                    Set<String> objetos_set = new TreeSet();
-                    String [] palabras;
-                    for (Map<String, String> contenido: contenidos_mapas_array) {
-                        contenido_texto = contenido.get(k_nombre_campo_json_texto); //NOI18N
-                        palabras = contenido_texto.split("\\s"); //NOI18N
-                        i = 0;
-                        for (String palabra : palabras) {
-                            if (i == 0) {
-                                acciones_set.add( 
-                                        "{"
-                                        + k_nombre_campo_texto + palabra + "\"," //NOI18N 
-                                        + k_nombre_campo_prefijo + k_prefijo_accion
-                                        + k_nombre_campo_infijo + k_infijo_accion
-                                        + k_nombre_campo_sufijo + k_sufijo_accion
-                                        + "}"); //NOI18N
-                            } else {
-                                objetos_set.add( 
-                                        "{"
-                                        + k_nombre_campo_texto + palabra + "\"," //NOI18N 
-                                        + k_nombre_campo_prefijo + k_prefijo_objeto
-                                        + k_nombre_campo_infijo + k_infijo_objeto
-                                        + k_nombre_campo_sufijo + k_sufijo_objeto
-                                        + "}"); //NOI18N
-                            }
-                            i = i + 1;
-                        }
-                    }
-                    acciones_texto = "["; //NOI18N
-                    for (String texto: acciones_set) {
-                        if (acciones_texto.endsWith("}")) { //NOI18N
-                            acciones_texto = acciones_texto + ", "; //NOI18N
-                        }
-                        acciones_texto = acciones_texto + texto;
-                    }                
-                    acciones_texto = acciones_texto + "]"; //NOI18N
-                    objetos_texto = "["; //NOI18N
-                    for (String texto: objetos_set) {
-                        if (objetos_texto.endsWith("}")) { //NOI18N
-                            objetos_texto = objetos_texto + ", "; //NOI18N
-                        }
-                        objetos_texto = objetos_texto + texto;
-                    }                 
-                    objetos_texto = objetos_texto + "]"; //NOI18N
-                    objects_mapa.put(k_mapa_contenido_array, contenidos_texto); //NOI18N
-                    objects_mapa.put(k_mapa_accion_array, acciones_texto); //NOI18N
-                    objects_mapa.put(k_mapa_objeto_array, objetos_texto); //NOI18N
-                    contexto.fondear_con_datos(k_mapa_contenido_array, contenidos_texto //NOI18N
-                        , k_mapa_accion_array, acciones_texto //NOI18N
-                        , k_mapa_objeto_array, objetos_texto); //NOI18N
+                    objects_mapa.put(k_mapa_contenido_array, contenidos_texto);
+                    contexto.fondear_con_datos(k_mapa_contenido_array, contenidos_texto);
                 }            
             } else {
                 objects_mapa.put(k_mapa_contenido_array, ele_contenido_array.dar()); //NOI18N
-                objects_mapa.put(k_mapa_accion_array, ele_accion_array.dar()); //NOI18N
-                objects_mapa.put(k_mapa_objeto_array, ele_objeto_array.dar()); //NOI18N
             }
         } catch (Exception e) {
             error[0] = e.getMessage();
@@ -213,7 +139,7 @@ public class menu_aplicaciones extends A_ejecutores {
                 retorno = aumentar_ruta(retorno, nombre_archivo + k_datos_extension, error);
             }
             if (retorno != null) {
-                url = menu_aplicaciones.class.getResource(retorno);
+                url = menu_contextuales.class.getResource(retorno);
                 file = new File(url.toURI());
                 retorno = file.getAbsolutePath();
             }

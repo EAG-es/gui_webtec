@@ -5,21 +5,6 @@
         "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
     },
     {
-        "texto": "Borrar ejemplo_autoformulario",
-        "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://innui/webtec/gui/ejemplo/ejemplo_autoformularios?innui_webtec_gui_autoformularios_accion=https://innui/webtec/gui/ejemplo/ejemplo_procesar_autoformularios' class='innui_webtec_gui_menu_aplicaciones_a'>",
-        "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
-    },
-    {
-        "texto": "Modificar ejemplo_autoformulario",
-        "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://innui/webtec/gui/ejemplo/ejemplo_autoformularios?innui_webtec_gui_autoformularios_accion=https://innui/webtec/gui/ejemplo/ejemplo_procesar_autoformularios' class='innui_webtec_gui_menu_aplicaciones_a'>",
-        "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
-    },
-    {
-        "texto": "Consultar ejemplo_autoformulario",
-        "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://innui/webtec/gui/ejemplo/ejemplo_autoformularios?innui_webtec_gui_autoformularios_accion=https://innui/webtec/gui/ejemplo/ejemplo_procesar_autoformularios' class='innui_webtec_gui_menu_aplicaciones_a'>",
-        "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
-    },
-    {
         "texto": "Configurar aplicación",
         "prefijo": "<div class='innui_webtec_gui_menu_aplicaciones_div'><a href='https://innui/webtec/gui/ejemplo/ejemplo_configuradores?innui_webtec_gui_autoformularios_accion=https://innui/webtec/gui/ejemplo/ejemplo_procesar_configuradores' class='innui_webtec_gui_menu_aplicaciones_a'>",
         "sufijo": "</a>&nbsp;&nbsp;&nbsp;&nbsp;</div>"
